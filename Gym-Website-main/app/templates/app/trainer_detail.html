@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+{% block content %}
+  <h2>{{ trainer.user.username }}</h2>
+  <p>Specialty: {{ trainer.specialty }}</p>
+  <p>{{ trainer.bio }}</p>
+  {% if trainer.image %}
+    <img src="{{ trainer.image.url }}" alt="{{ trainer.user.username }}">
+  {% endif %}
+{% endblock %}

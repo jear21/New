@@ -1,0 +1,10 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+  <h2>Enroll in {{ gym_class.name }}</h2>
+  <p>{{ gym_class.description }}</p>
+  <p>Available spots: {{ gym_class.available_spots }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Enroll</button>
+  </form>
+{% endblock %}

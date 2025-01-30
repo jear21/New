@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🏋️ Gym Classes</h2>
+
+    <div class="text-center mb-4">
+        <a href="{% url 'gym_class_create' %}" class="btn btn-success px-4">
+            <i class="fas fa-plus"></i> Add Gym Class
+        </a>
+    </div>
+
+    {% if classes %}
+        <div class="row justify-content-center">
+            {% for gym_class in classes %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg border-0 mb-4">
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold">{{ gym_class.name }}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Available Spots: <span class="fw-bold text-success">{{ gym_class.available_spots }}</span>
+                            </h6>
+                            <p class="card-text text-muted small">{{ gym_class.description|truncatewords:20 }}</p>
+                            <p class="card-text">
+                                <strong>Max Capacity:</strong> {{ gym_class.max_capacity }}
+                            </p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="{% url 'gym_class_edit' gym_class.pk %}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="{% url 'gym_class_delete' gym_class.pk %}" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No gym classes available. Add a new class to get started!</p>
+    {% endif %}
+</div>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .btn {
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}

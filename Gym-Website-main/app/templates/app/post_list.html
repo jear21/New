@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">📖 Blog Posts</h2>
+
+    <div class="text-center mb-4">
+        <a href="{% url 'post_create' %}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Create a New Post
+        </a>
+    </div>
+
+    {% if posts %}
+        <div class="row justify-content-center">
+            {% for post in posts %}
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0 mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <strong><i class="fas fa-user"></i> {{ post.author }}</strong>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ post.title }}</h4>
+                        <p class="card-text text-muted">{{ post.body|truncatewords:30 }}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-outline-primary">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="{% url 'post_delete' pk=post.pk %}" class="btn btn-outline-danger">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No blog posts available. Be the first to create one!</p>
+    {% endif %}
+</div>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 12px;
+    }
+    .card-header {
+        font-size: 1rem;
+    }
+    .btn {
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}

@@ -1,19 +1,17 @@
-{% load static %}
-{% block content %}
-<header>
-  <nav>
-    <ul>
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'about' %}">About</a></li>
-      <li><a href="{% url 'blog' %}">Blog</a></li>
 
-      <li class="dropdown">
-        <a>More Page</a>
-        <div class="dropdown-content">
-          <a href="{% url 'Contact' %}">contact</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
-{% endblock content %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="{% url 'post_list' %}">Blog</a>
+        <a class="nav-link" href="{% url 'gym_class_list' %}">Classes</a>
+        <a class="nav-link" href="{% url 'trainer_list' %}">Trainers</a>
+        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>

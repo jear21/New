@@ -1,0 +1,66 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🏋️ Gym Trainers</h2>
+
+    <div class="text-center mb-4">
+        <a href="{% url 'trainer_create' %}" class="btn btn-success px-4">
+            <i class="fas fa-plus"></i> Add Trainer
+        </a>
+    </div>
+
+    {% if trainers %}
+        <div class="row justify-content-center">
+            {% for trainer in trainers %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg border-0 mb-4">
+                        {% if trainer.image %}
+                        <img src="{{ trainer.image.url }}" class="card-img-top" alt="Trainer Image" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                        <div class="text-center pt-4">
+                            <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold">{{ trainer.user }}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Specialty: <span class="fw-bold text-primary">{{ trainer.specialty }}</span>
+                            </h6>
+                            <p class="card-text text-muted small">{{ trainer.bio|truncatewords:20 }}</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="{% url 'trainer_edit' trainer.pk %}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="{% url 'trainer_delete' trainer.pk %}" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No trainers available. Add a new trainer to get started!</p>
+    {% endif %}
+</div>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .btn {
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}

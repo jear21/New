@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">{% if trainer %}Edit{% else %}Create{% endif %} Post</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">
+      {% if trainer %}Update{% else %}Create{% endif %}
+    </button>
+  </form>
+</div>
+{% endblock %}
