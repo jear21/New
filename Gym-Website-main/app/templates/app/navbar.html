@@ -1,0 +1,19 @@
+{% load static %}
+{% block content %}
+<header>
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'blog' %}">Blog</a></li>
+
+      <li class="dropdown">
+        <a>More Page</a>
+        <div class="dropdown-content">
+          <a href="{% url 'Contact' %}">contact</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+{% endblock content %}
